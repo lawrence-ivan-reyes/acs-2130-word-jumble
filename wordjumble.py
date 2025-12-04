@@ -24,3 +24,13 @@ def create_words_dict(words_list):
             words_dict[key].append(word)
     return words_dict
 
+def solve_one_jumble(letters):
+    # given the scrambled letters, return all valid words they can spell
+    # sort letters to create lookup key
+    key = sorted_letters(letters)
+    
+    # look up all words that have the same sorted letters
+    if key in words_dict:
+        return words_dict[key]
+    else:
+        return []
