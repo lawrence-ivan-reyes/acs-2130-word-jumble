@@ -167,3 +167,55 @@ def solve_word_jumble(letters, circles, final):
     print(f'unscrambled into {len(final_results)} possible phrases:')
     for num, result in enumerate(final_results):
         print(f'    Option {num+1}: {" ".join(result)}')
+
+def test_solve_word_jumble_1():
+    print('='*20 + ' WORD JUMBLE TEST CASE 1 ' + '='*20)
+    letters = ['ACOME', 'FEROC', 'REDDEG', 'YURFIP']
+    circles = ['___O_', '__OO_', 'O_O___', 'O__O__']
+    final = ['OOOOOOO']
+    solve_word_jumble(letters, circles, final)
+
+
+def test_solve_word_jumble_2():
+    print('\n' + '='*20 + ' WORD JUMBLE TEST CASE 2 ' + '='*20)
+    letters = ['TARFD', 'JOBUM', 'TENJUK', 'LETHEM']
+    circles = ['____O', '_OO__', '_O___O', 'O____O']
+    final = ['OOOO', 'OOO']
+    solve_word_jumble(letters, circles, final)
+
+
+def test_solve_word_jumble_3():
+    print('\n' + '='*20 + ' WORD JUMBLE TEST CASE 3 ' + '='*20)
+    letters = ['LAISA', 'LAURR', 'BUREEK', 'PROUOT']
+    circles = ['_OOO_', 'O_O__', 'OO____', '__O_OO']
+    final = ['OOOOO', 'OOOOO']
+    solve_word_jumble(letters, circles, final)
+
+
+def test_solve_word_jumble_4():
+    print('\n' + '='*20 + ' WORD JUMBLE TEST CASE 4 ' + '='*20)
+    # cartoon prompt: "Farley rolled on the barn floor because of his __-______."
+    letters = ['TEFON', 'SOKIK', 'NIUMEM', 'SICONU']
+    circles = ['__O_O', 'OO_O_', '____O_', '___OO_']
+    final = ['OO', 'OOOOOO']
+    solve_word_jumble(letters, circles, final)
+
+
+if __name__ == '__main__':
+    # get list of all words in dictionary words file
+    words_list = get_file_lines('/usr/share/dict/words')
+    
+    # create dictionary indexed by sorted letters for O(1) anagram lookup
+    words_dict = create_words_dict(words_list)
+    
+    print("Dictionary lookup examples:")
+    print(f"  words_dict['DGO']    = {words_dict.get('DGO', [])}")
+    print(f"  words_dict['CDEO']   = {words_dict.get('CDEO', [])}")
+    print(f"  words_dict['ILST']   = {words_dict.get('ILST', [])}")
+    print(f"  words_dict['EILNST'] = {words_dict.get('EILNST', [])}")
+    print()
+    
+    test_solve_word_jumble_1()
+    test_solve_word_jumble_2()
+    test_solve_word_jumble_3()
+    test_solve_word_jumble_4()
